@@ -1,42 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "./hooks/useForm";
 
 const App = () => {
-  // pattern #1
-  // const [{ count, count2 }, setCount] = useState({ count: 10, count2: 20 });
-
-  // return (
-  //   <div>
-  //     <button
-  //       onClick={() =>
-  //         setCount((currentState) => ({
-  //           ...currentState,
-  //           count: currentState.count + 1,
-  //         }))
-  //       }>
-  //       Increment
-  //     </button>
-
-  //     <div>Count1: {count}</div>
-  //     <div>Count2: {count2}</div>
-  //   </div>
-  // );
-
-  // pattern #2
-  const [count, setCount] = useState(10);
-  const [count2, setCount2] = useState(20);
+  const [values, handleChange] = useForm({ email: "", password: "" });
 
   return (
     <div>
-      <button
-        onClick={() => {
-          setCount((c) => c + 1);
-          setCount2((c) => c + 1);
-        }}>
-        Increment
-      </button>
+      <input
+        type="email"
+        name="email"
+        value={values.email}
+        onChange={handleChange}
+      />
 
-      <div>Count1: {count}</div>
-      <div>Count2: {count2}</div>
+      <input
+        type="password"
+        name="password"
+        value={values.password}
+        onChange={handleChange}
+      />
     </div>
   );
 };
