@@ -2,22 +2,22 @@ import React, { useReducer, useRef } from "react";
 
 function ShoppingList() {
   const inputRef = useRef();
-  const [items, dispatch] = useReducer((state, action) => {
+  const [items, dispatch] = useReducer((currentState, action) => {
     switch (action.type) {
       case "ADD":
         return [
-          ...state,
+          ...currentState,
           {
-            id: state.length,
+            id: currentState.length,
             name: action.name,
           },
         ];
       case "REMOVE":
-        return state.filter((_, index) => index !== action.index);
+        return currentState.filter((_, index) => index !== action.index);
       case "CLEAR":
         return [];
       default:
-        return state;
+        return currentState;
     }
   }, []);
 
