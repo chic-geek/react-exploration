@@ -1,9 +1,11 @@
-import React from 'react';
+import React from "react";
+import Form from "../Form";
 
 function App() {
   return (
     <div>
-      <h1>Hello World!</h1>
+      <h1>Hooks login form</h1>
+      <Form />
     </div>
   );
 }
