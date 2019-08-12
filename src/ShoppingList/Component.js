@@ -1,25 +1,14 @@
 import React, { useReducer, useRef } from "react";
+import shoppingListInitialState from "./initialState";
+import shoppingListReducer from "./reducer";
 
 function ShoppingList() {
   const inputRef = useRef();
-  const [items, dispatch] = useReducer((currentState, action) => {
-    switch (action.type) {
-      case "ADD":
-        return [
-          ...currentState,
-          {
-            id: currentState.length,
-            name: action.name,
-          },
-        ];
-      case "REMOVE":
-        return currentState.filter((_, index) => index !== action.index);
-      case "CLEAR":
-        return [];
-      default:
-        return currentState;
-    }
-  }, []);
+
+  const [items, dispatch] = useReducer(
+    shoppingListReducer,
+    shoppingListInitialState
+  );
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -35,6 +24,7 @@ function ShoppingList() {
       <form onSubmit={handleSubmit}>
         <input ref={inputRef} />
       </form>
+
       <button onClick={() => dispatch({ type: "CLEAR" })}>Clear</button>
       <ul>
         {items.map((item, index) => (
