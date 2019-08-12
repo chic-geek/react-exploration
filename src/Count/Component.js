@@ -1,17 +1,9 @@
 import React, { useReducer } from "react";
+import initialCountState from "./initialState";
+import countReducer from "./reducer";
 
 function Count() {
-  const initialCountState = 0;
-  const [count, dispatch] = useReducer((state, action) => {
-    switch (action) {
-      case "INCREMENT":
-        return state + 1;
-      case "DECREMENT":
-        return state - 1;
-      default:
-        return state;
-    }
-  }, initialCountState);
+  const [count, dispatch] = useReducer(countReducer, initialCountState);
 
   return (
     <div>
