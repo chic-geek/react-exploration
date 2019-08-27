@@ -1,10 +1,14 @@
 import React from "react";
-import StateExample from "../StateExample";
+import UseStateExample from "../UseStateExample";
+import UseEffectExample from "../UseEffectExample";
+import UseEffectWithCleanupExample from "../UseEffectWithCleanupExample";
 
 function App() {
   return (
     <React.Fragment>
-      <StateExample />
+      <UseStateExample />
+      <UseEffectExample />
+      <UseEffectWithCleanupExample />
     </React.Fragment>
   );
 }
