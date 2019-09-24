@@ -1,9 +1,11 @@
 import React from 'react';
+import RichtextEditor from '../RichtextEditor';
 
 function App() {
   return (
     <div>
-      <h1>Hello World!</h1>
+      <h1>Full RTE</h1>
+      <RichtextEditor />
     </div>
   );
 }
