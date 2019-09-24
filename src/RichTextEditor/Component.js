@@ -1,5 +1,7 @@
 import React from 'react';
 import { Editor } from 'slate-react';
+import { CodeNode, BoldMark } from './Wrappers';
+import { formatAmpersand, formatBold, formatCode } from './Formatters';
 
 class RichTextEditor extends React.Component {
   state = {
@@ -12,27 +14,42 @@ class RichTextEditor extends React.Component {
 
   onKeyDown = (event, editor, next) => {
     console.log(event.key);
-    this.filterAmpersand(event, editor, next);
-    this.createCodeSnippet(event, editor, next);
-  }
 
-  filterAmpersand = (event, editor, next) => {
-    if (event.key !== '&') return next();
-    event.preventDefault();
-    editor.insertText('and');
-  }
+    switch (event.key) {
+      case 'b': {
+        formatBold(event, editor);
+        break;
+      }
 
-  createCodeSnippet = (event, editor, next) => {
-    if (event.key !== '`' || !event.ctrlKey) return next();
-    event.preventDefault();
-    const isCode = editor.value.blocks.some((block) => block.type === "code");
-    editor.setBlocks(isCode ? 'paragraph' : 'code');
+      case '&': {
+        formatAmpersand(event, editor, next);
+        break;
+      }
+
+      case '`': {
+        formatCode(event, editor, next);
+        break;
+      }
+
+      default: {
+        return next();
+      }
+    }
   }
 
   renderBlock = (props, editor, next) => {
     switch (props.node.type) {
       case 'code':
         return <CodeNode {...props} />
+      default:
+        return next();
+    }
+  }
+
+  renderMark = (props, editor, next) => {
+    switch (props.mark.type) {
+      case 'bold':
+        return <BoldMark {...props} />
       default:
         return next();
     }
@@ -45,19 +62,10 @@ class RichTextEditor extends React.Component {
         onChange={this.onChange}
         onKeyDown={this.onKeyDown}
         renderBlock={this.renderBlock}
+        renderMark={this.renderMark}
       />
     );
   }
-}
-
-function CodeNode(props) {
-  return (
-    <pre {...props.attributes}>
-      <code>
-        {props.children}
-      </code>
-    </pre>
-  );
 }
 
 export default RichTextEditor;
