@@ -5,11 +5,12 @@ import { isKeyHotkey } from 'is-hotkey';
 import { Button, Icon, Toolbar } from './utils/Components';
 import initialValue from './utils/value.json';
 
-const DEFAULT_NODE = 'paragraph'
-const isBoldHotkey = isKeyHotkey('mod+b')
-const isItalicHotkey = isKeyHotkey('mod+i')
-const isUnderlinedHotkey = isKeyHotkey('mod+u')
-const isCodeHotkey = isKeyHotkey('mod+`')
+const DEFAULT_NODE = 'paragraph';
+
+const isBoldHotkey = isKeyHotkey('mod+b');
+const isItalicHotkey = isKeyHotkey('mod+i');
+const isUnderlinedHotkey = isKeyHotkey('mod+u');
+const isCodeHotkey = isKeyHotkey('mod+`');
 
 class RichtextEditor extends React.Component {
   state = {
