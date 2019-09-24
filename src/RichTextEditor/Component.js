@@ -10,11 +10,23 @@ class RichTextEditor extends React.Component {
     this.setState({ value: value, });
   }
 
+  onKeyDown = (event, editor, next) => {
+    console.log(event.key);
+    this.filterAmpersand(event, editor, next);
+  }
+
+  filterAmpersand = (event, editor, next) => {
+    if (event.key !== '&') return next();
+    event.preventDefault();
+    editor.insertText('and');
+  }
+
   render() {
     return (
       <Editor
         value={this.state.value}
         onChange={this.onChange}
+        onKeyDown={this.onKeyDown}
       />
     );
   }
