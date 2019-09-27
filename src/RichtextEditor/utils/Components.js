@@ -9,6 +9,7 @@ export const Button = React.forwardRef(
     />
   )
 );
+Button.displayName = 'Button';
 
 export const Icon = React.forwardRef(({ className, ...props }, ref) => (
   <span
@@ -17,6 +18,7 @@ export const Icon = React.forwardRef(({ className, ...props }, ref) => (
     className={`material-icons ${className}`}
   />
 ));
+Icon.displayName = 'Icon';
 
 export const Toolbar = React.forwardRef(({ className, ...props }, ref) => (
   <div
@@ -25,3 +27,4 @@ export const Toolbar = React.forwardRef(({ className, ...props }, ref) => (
     className="toolbar"
   />
 ));
+Toolbar.displayName = 'Toolbar';
