@@ -48,7 +48,6 @@ class RichtextEditor extends React.Component {
 
         <Editor
           spellCheck
-          // autoFocus
           placeholder="Enter some rich text..."
           ref={this.ref}
           value={this.state.value}
