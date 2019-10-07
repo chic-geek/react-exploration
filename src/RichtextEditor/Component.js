@@ -15,48 +15,93 @@ const isCodeHotkey = isKeyHotkey('mod+`');
 class RichtextEditor extends React.Component {
   state = {
     value: Value.fromJSON(initialValue),
+    isFocused: false,
+    isErrored: false,
   }
 
-  hasMark = type => {
+  hasMark = (type) => {
     const { value } = this.state
     return value.activeMarks.some(mark => mark.type === type)
   }
 
-  hasBlock = type => {
+  hasBlock = (type) => {
     const { value } = this.state
     return value.blocks.some(node => node.type === type)
   }
 
-  ref = editor => {
+  ref = (editor) => {
     this.editor = editor
   }
 
-  render() {
-    return (
-      <div>
-        <Toolbar>
-          {this.renderMarkButton('bold', 'format_bold')}
-          {this.renderMarkButton('italic', 'format_italic')}
-          {this.renderMarkButton('underlined', 'format_underlined')}
-          {this.renderMarkButton('code', 'code')}
-          {this.renderBlockButton('heading-one', 'looks_one')}
-          {this.renderBlockButton('heading-two', 'looks_two')}
-          {this.renderBlockButton('block-quote', 'format_quote')}
-          {this.renderBlockButton('numbered-list', 'format_list_numbered')}
-          {this.renderBlockButton('bulleted-list', 'format_list_bulleted')}
-        </Toolbar>
+  runValidation = () => {
+    const { text } = this.state.value.document;
+    if (text === '') {
+      setTimeout(() => this.setState({ isErrored: true, }), 0);
+    }
+  }
 
-        <Editor
-          spellCheck
-          placeholder="Enter some rich text..."
-          ref={this.ref}
-          value={this.state.value}
-          onChange={this.onChange}
-          onKeyDown={this.onKeyDown}
-          renderBlock={this.renderBlock}
-          renderMark={this.renderMark}
-        />
-      </div>
+  handleContainerFocus = () => {
+    setTimeout(() => this.setState({ isFocused: true, }), 0);
+    setTimeout(() => this.setState({ isErrored: false, }), 0);
+  }
+
+  handleContainerBlur = () => {
+    setTimeout(() => this.setState({ isFocused: false, }), 0);
+    this.runValidation();
+  }
+
+  render() {
+    const containerColor = this.state.isErrored ? 'red' : (this.state.isFocused ? '#FF851B' : '#DDDDDD');
+
+    return (
+      <>
+        <div
+          onFocus={this.handleContainerFocus}
+          onBlur={this.handleContainerBlur}
+          onClick={this.handleContainerFocus}
+          onBlur={this.handleContainerBlur}
+          style={{ border: `3px solid ${containerColor}` }}
+        >
+          <Toolbar>
+            {this.renderMarkButton('bold', 'format_bold')}
+            {this.renderMarkButton('italic', 'format_italic')}
+            {this.renderMarkButton('underlined', 'format_underlined')}
+            {this.renderMarkButton('code', 'code')}
+            {this.renderBlockButton('heading-one', 'looks_one')}
+            {this.renderBlockButton('heading-two', 'looks_two')}
+            {this.renderBlockButton('block-quote', 'format_quote')}
+            {this.renderBlockButton('numbered-list', 'format_list_numbered')}
+            {this.renderBlockButton('bulleted-list', 'format_list_bulleted')}
+          </Toolbar>
+
+          <Editor
+            style={{ padding: '.5rem' }}
+            spellCheck
+            placeholder="Enter some rich text..."
+            ref={this.ref}
+            value={this.state.value}
+            onChange={this.onChange}
+            onKeyDown={this.onKeyDown}
+            renderBlock={this.renderBlock}
+            renderMark={this.renderMark}
+          />
+        </div>
+
+        {this.state.isErrored &&
+          <div
+            className="error"
+            style={{
+              backgroundColor: 'red',
+              fontWeight: 'bold',
+              color: 'white',
+              padding: '.25rem .5rem',
+              display: 'inline-block',
+            }}
+          >
+            Please complete this field
+          </div>
+        }
+      </>
     )
   }
 
