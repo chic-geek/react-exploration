@@ -1,19 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import ThemeContext from '../context';
 import Row from '../Row';
+import { useWindowWidth, useDocumentTitle, useFormUnput } from './hooks';
 
 export default function Greeting() {
-  const [name, setName] = useState('Mary');
-  const [surname, setSurname] = useState('Poppins');
+  const name = useFormUnput('Mary');
+  const surname = useFormUnput('Poppins');
   const theme = useContext(ThemeContext);
+  const width = useWindowWidth();
 
-  function handleNameChange(event) {
-    setName(event.target.value);
-  }
-
-  function handleSurnameChange(event) {
-    setSurname(event.target.value);
-  }
+  useDocumentTitle(name.value + ` ` + surname.value);
 
   return (
     <section style={{
@@ -25,8 +21,7 @@ export default function Greeting() {
           id="Name"
           name="Name"
           type="text"
-          value={name}
-          onChange={handleNameChange}
+          {...name}
         />
       </Row>
 
@@ -35,9 +30,12 @@ export default function Greeting() {
           id="Surname"
           name="Surname"
           type="text"
-          value={surname}
-          onChange={handleSurnameChange}
+          {...surname}
         />
+      </Row>
+
+      <Row label="Surname">
+        {width}
       </Row>
     </section>
   );
