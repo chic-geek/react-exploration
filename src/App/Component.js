@@ -14,6 +14,7 @@ class App extends React.Component {
     return (
       <div>
         <Counter onCountUpdate={this.handleCount} />
+        <h2>The count is: {this.state.currentCount === null ? 0 : this.state.currentCount}</h2>
       </div>
     );
   }
