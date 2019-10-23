@@ -1,9 +1,11 @@
 import React from 'react';
+import Form from '../Form';
 
 function App() {
   return (
     <div>
-      <h1>Hello World!</h1>
+      <h1>Dynamic form demo</h1>
+      <Form />
     </div>
   );
 }
