@@ -1,0 +1,24 @@
+$sqSize: 50px;
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: $sqSize - 10;
+  font-weight: bold;
+  line-height: $sqSize;
+  height: $sqSize;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: $sqSize;
+}
+
+.square:focus {
+  outline: none;
+}
+
+.kbd-navigation .square:focus {
+  background: #ddd;
+}
