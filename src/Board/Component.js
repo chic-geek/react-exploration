@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Square from "../Square";
 
 function Board() {
-  function renderSquare(i) {
-    return <Square />;
+  const [squares, setSquares] = useState(Array(9).fill(null));
+  const [xIsNext, setXisNext] = useState(true);
+
+  function handleClick(i) {
+    const squaresClone = [...squares];
+    squaresClone[i] = xIsNext ? "X" : "O";
+    setSquares(squaresClone);
+    setXisNext(!xIsNext);
   }
 
-  const status = "Next player: X";
+  function renderSquare(i) {
+    return (
+      <Square
+        value={squares[i]}
+        onClick={() => handleClick(i)}
+      />
+    );
+  }
+
+  const status = `Next player is ${xIsNext ? "X" : "O"}`;
 
   return (
     <div>
@@ -26,7 +41,7 @@ function Board() {
         {renderSquare(7)}
         {renderSquare(8)}
       </div>
-    </div>
+    </div >
   );
 }
 
