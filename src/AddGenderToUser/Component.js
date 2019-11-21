@@ -9,7 +9,7 @@ export default function AddGenderToUser() {
     dispatch({
       type: SET_GENDER,
       gender: "Male",
-    })
+    });
   }
 
   return (

@@ -9,7 +9,7 @@ export default function AddAgeToUser() {
     dispatch({
       type: SET_AGE,
       age: 35,
-    })
+    });
   }
 
   return (

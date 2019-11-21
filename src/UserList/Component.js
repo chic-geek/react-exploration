@@ -9,7 +9,7 @@ export default function UserList() {
     dispatch({
       type: UPDATE_USER,
       username: "cbrett84",
-    })
+    });
   }
 
   return (

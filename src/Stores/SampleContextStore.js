@@ -14,6 +14,7 @@ export const initialState = {
 export const UPDATE_USER = "UPDATE_USER";
 export const SET_GENDER = "SET_GENDER";
 export const SET_AGE = "SET_AGE";
+export const RESET_APP = "RESET_APP";
 
 // build a reducer to handle the state mutations
 export function reducer(state, action) {
@@ -36,6 +37,9 @@ export function reducer(state, action) {
         ...state,
         age: action.age,
       }
+
+    case RESET_APP:
+      return initialState
 
     default:
       return initialState
