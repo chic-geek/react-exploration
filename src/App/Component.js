@@ -1,11 +1,11 @@
 import React from 'react';
+import ExampleFormOne from '../ExampleFormOne';
 
-function App() {
+export default function App() {
   return (
     <div>
-      <h1>Hello World!</h1>
+      <h1>Testing form hooks</h1>
+      <ExampleFormOne />
     </div>
   );
 }
-
-export default App;
