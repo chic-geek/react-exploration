@@ -1,11 +1,37 @@
 import React from 'react';
+import NameForm from '../NameForm';
 
-function App() {
+export default function App() {
   return (
-    <div>
-      <h1>Hello World!</h1>
-    </div>
-  );
+    <NameForm />
+  )
 }
 
-export default App;
+// import React from 'react';
+// import ControlledInput from '../ControlledInput';
+
+// export default function App() {
+//   const [state, setState] = React.useState({});
+
+//   const handleInputChange = (val) => setState((prevState) => ({
+//     ...prevState,
+//     value: val,
+//   }));
+
+//   const handleFormSubmit = () => {
+//     alert(JSON.stringify(state, null, 2))
+//   }
+
+//   return (
+//     <div>
+//       <form onSubmit={handleFormSubmit}>
+//         <ControlledInput
+//           defaultValue="John"
+//           type="text"
+//           placeholder="Firstname"
+//           callback={val => handleInputChange(val)}
+//         />
+//       </form>
+//     </div>
+//   );
+// }
