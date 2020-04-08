@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "../Form";
 
-function App() {
+export default function App() {
   return (
     <div>
       <h1>Hooks login form</h1>
@@ -9,5 +9,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

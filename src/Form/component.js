@@ -7,7 +7,7 @@ const formInitialState = {
   password: "",
 };
 
-function Form() {
+export default function Form() {
   const { values, handleSubmit, handleChange, errors } = useForm(
     formInitialState,
     loginCallBack,
@@ -63,4 +63,3 @@ function Form() {
   );
 }
 
-export default Form;
