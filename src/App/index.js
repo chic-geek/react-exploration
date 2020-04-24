@@ -1,2 +1,2 @@
-import "./Component.scss";
+import "./Component.css";
 export { default } from "./Component";
