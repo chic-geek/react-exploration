@@ -1,0 +1,116 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: inherit;
+}
+
+.page {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  width: 47rem;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.rte {
+  border: 3px solid #001f3f;
+  height: 15rem;
+  overflow: hidden;
+}
+
+.wrapper {
+  color: white;
+  font-family: sans-serif;
+  font-size: 24px;
+  padding: 20px;
+}
+
+.toolbarContainer {
+  background-color: #001f3f;
+}
+
+.toolbarIcons {
+  border-right: 1px solid lighten(#001f3f, 10%);
+  display: inline-flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-left: 0.8rem;
+  padding-right: 0.5rem;
+  vertical-align: middle;
+
+  &:first-child {
+    padding-left: 0;
+  }
+
+  &:last-child {
+    border: none;
+    padding-right: 0;
+  }
+
+  & > * {
+    display: inherit;
+    margin-right: 6px;
+  }
+}
+
+.toolbarIcon {
+  background: none;
+  border: 2px solid darken(#0074d9, 25%);
+  color: #0074d9;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 30px;
+  text-transform: uppercase;
+  width: 30px;
+
+  &:hover {
+    border-color: #0074d9;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  &:active {
+    border-color: #ffdc00;
+    color: #ffffff;
+    outline: none;
+  }
+}
+
+.editorContainer {
+  background-color: #0074d9;
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.editor {
+  height: 100%;
+}
+
+.isFocused {
+  border: 3px solid #ffdc00;
+}
+
+.isFullscreen {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
