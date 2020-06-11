@@ -1,2 +1,2 @@
-import "./Component.scss";
-export { default } from "./Component";
+import "./component.scss";
+export { default } from "./component";
